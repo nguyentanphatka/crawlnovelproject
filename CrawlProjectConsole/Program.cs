@@ -1,12 +1,7 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
 using CrawlProjectConsole;
-using CrawlProjectConsole.Migrations;
 using HtmlAgilityPack;
 
 
@@ -21,7 +16,8 @@ using HtmlAgilityPack;
 
 // download html
 var url = @"https://www.kiemhieptruyen.com/";
-var html = new WebClient().DownloadString(url);
+var novelUrl =  @"https://www.kiemhieptruyen.com/muc-luc/";
+var html = new WebClient().DownloadString(novelUrl);
 
 //init the html doc
 var doc = new HtmlDocument();
@@ -33,11 +29,13 @@ foreach (var novelNode in novelNodes)
 {
     var novel = new Story();
     var titleNode = novelNode.SelectSingleNode("./*[@class='a1']");
-    novel.Title = titleNode.InnerText?.Trim();
+    if(titleNode==null)
+        continue;
+    novel.Title = titleNode.InnerText?.Trim()??"blank";
     novel.Link = titleNode.GetAttributeValue("href", "");
     
-    var dateNode = novelNode.SelectSingleNode("./*[@class='a2']");
-    var stringDate = dateNode.InnerText?.Trim();
+    // var dateNode = novelNode.SelectSingleNode("./*[@class='a2']");
+    // var stringDate = dateNode.InnerText?.Trim();
     // Ngày đăng:  28-03-2017 
     // TODO using regex to get date
 
@@ -46,10 +44,9 @@ foreach (var novelNode in novelNodes)
     // novel.Chapters = chapters.ToList();
     context.Stories.Add(novel);
     context.SaveChanges();
-    Console.WriteLine(stringDate);
 }
 // context.SaveChanges();
-
+Console.WriteLine("Finish");
 Console.ReadKey();
 
 void GetChapter(Story novel, string href)
@@ -64,8 +61,8 @@ void GetChapter(Story novel, string href)
      
      // get author
      var novelAuthor = doc.DocumentNode.SelectSingleNode("//meta[@name='author']");
-     var author = novelAuthor?.GetAttributeValue("content","blank");
-     novel.Author = author;
+     var authorName = novelAuthor?.GetAttributeValue("content","blank");
+     novel.Author = authorName??"blank";
 
      // Get total chap from xpath or count
      
@@ -73,7 +70,9 @@ void GetChapter(Story novel, string href)
      var novelNodes = chapterDoc.DocumentNode.SelectNodes("//ul[@class='khungul']/li");
      
      var index = 1;
-     foreach (var novelNode in novelNodes)
+     if (novelNodes == null)
+         return;
+     foreach (var novelNode in novelNodes??null )
      {
          if(novelNode==null)
              continue;
@@ -83,7 +82,7 @@ void GetChapter(Story novel, string href)
         
          if(titleNode!=null)
          {
-             chapter.Title = titleNode.InnerText?.Trim();
+             chapter.Title = titleNode.InnerText?.Trim()??"blank";
              chapter.Link = titleNode.GetAttributeValue("href", "");
 
              // get chapter data
@@ -103,7 +102,7 @@ void GetChapter(Story novel, string href)
              // get description
              var novelContent = dataDoc.DocumentNode.SelectSingleNode("//meta[@name='description']");
              var content = novelContent?.GetAttributeValue("content","blank");
-             chapter.Content = content;
+             chapter.Content = content??"blank";
              chapter.Index = index;
              result.Add(chapter);
              index++;
