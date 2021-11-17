@@ -1,0 +1,76 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\NGOC LE\\Desktop\\Crawl Project\\CrawlProjectConsole\\CrawlProjectConsole\\CrawlProjectConsole.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\NGOC LE\\Desktop\\Crawl Project\\CrawlProjectConsole\\CrawlProjectConsole\\CrawlProjectConsole.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\NGOC LE\\Desktop\\Crawl Project\\CrawlProjectConsole\\CrawlProjectConsole\\CrawlProjectConsole.csproj",
+        "projectName": "CrawlProjectConsole",
+        "projectPath": "C:\\Users\\NGOC LE\\Desktop\\Crawl Project\\CrawlProjectConsole\\CrawlProjectConsole\\CrawlProjectConsole.csproj",
+        "packagesPath": "C:\\Users\\NGOC LE\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\NGOC LE\\Desktop\\Crawl Project\\CrawlProjectConsole\\CrawlProjectConsole\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\NGOC LE\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "HtmlAgilityPack": {
+              "target": "Package",
+              "version": "[1.11.38, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[6.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
