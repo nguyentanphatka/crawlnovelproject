@@ -11,7 +11,7 @@ namespace CrawlProjectConsole
             Content = "";
             TotalView = 0;
             Link = "";
-            CreatedDate = DateTime.Now;
+            CreatedDate = null;
         }
 
         public int Id { get; set; }
